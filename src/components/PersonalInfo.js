@@ -19,10 +19,10 @@ const PersonalInfo = ({
 }) => {
   return (
     <div className="personal-info text-left bg-slate-100 my-5">
-      <h3 className="text-xl font-semibold bg-amber-500 text-stone-100 p-2">
+      <h3 className="text-xl font-bold bg-amber-500 text-stone-100 p-2">
         Personal Information
       </h3>
-      <form action="#" className="my-2 px-2 py-3">
+      <form action="#" className="my-2 px-2 py-3" id="p-info">
         <div className="first-name">
           <label htmlFor="firstName">First Name:</label>
           <br />
