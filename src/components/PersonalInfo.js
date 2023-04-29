@@ -1,23 +1,22 @@
+/* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 
-const PersonalInfo = ({ states }) => {
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    title,
-    setTitle,
-    address,
-    setAddress,
-    number,
-    setNumber,
-    email,
-    setEmail,
-    description,
-    setDescription,
-  } = states();
-
+const PersonalInfo = ({
+  firstName,
+  setFirstName,
+  lastName,
+  setLastName,
+  title,
+  setTitle,
+  address,
+  setAddress,
+  number,
+  setNumber,
+  email,
+  setEmail,
+  description,
+  setDescription,
+}) => {
   return (
     <div className="personal-info text-left bg-slate-100 my-5">
       <h3 className="text-xl font-semibold bg-amber-500 text-stone-100 p-2">

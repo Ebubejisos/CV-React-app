@@ -1,12 +1,10 @@
 import PropTypes from "prop-types";
 
-const Preview = ({ states }) => {
-  const { firstName, title } = states();
-
+const Preview = ({ name, title }) => {
   return (
     <section>
       <div className="heading bg-sky-500 pt-3 text-white">
-        <h1 className="text-3xl font-bold">{firstName}</h1>
+        <h1 className="text-3xl font-bold">{name}</h1>
         <p>{title}</p>
       </div>
       <div className="grid grid-cols-6 gap-0">
