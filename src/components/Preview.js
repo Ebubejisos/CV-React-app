@@ -9,6 +9,8 @@ const Preview = ({
   address,
   number,
   email,
+  eduData,
+  expData,
 }) => {
   return (
     <main>
@@ -61,14 +63,43 @@ const Preview = ({
             <h3 className="text-lg font-bold text-blue-900 border-b border-zinc-400 tracking-wider">
               Experience
             </h3>
-            <ul></ul>
+            <ul>
+              {expData.map((el) => (
+                <li key={el.id}>
+                  <div className="flex gap-4">
+                    <div className="year font-bold">
+                      {el.from} - {el.to}
+                    </div>
+                    <aside>
+                      <h4 className="font-bold">{el.company}</h4>
+                      <p className="text-sm">Position: {el.position}</p>
+                    </aside>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </section>
           {/* Education block */}
           <section className="pt-4">
             <h3 className="text-lg font-bold text-blue-900 border-b border-zinc-400 tracking-wider">
               Education
             </h3>
-            <ul></ul>
+            <ul>
+              {eduData.map((form) => (
+                <li key={form.id}>
+                  <div className="flex gap-4">
+                    <div className="year font-bold">
+                      {form.from} - {form.to}
+                    </div>
+                    <aside>
+                      <h4 className="font-bold">{form.university}</h4>
+                      <p className="text-sm">Degree: {form.degree}</p>
+                      <p className="text-sm">Subject: {form.subject}</p>
+                    </aside>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
       </div>

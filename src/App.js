@@ -14,6 +14,8 @@ function App() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [eduData, setEduData] = useState([]);
+  const [expData, setExpData] = useState([]);
+  const [isPreview, setIsPreview] = useState(false);
 
   return (
     <div className="App">
@@ -42,20 +44,34 @@ function App() {
             setImage={setImage}
             image={image}
           />
-          <Experience />
+          <Experience data={expData} setData={setExpData} />
           <Education data={eduData} setData={setEduData} />
-          <Preview
-            name={firstName}
-            title={title}
-            image={image}
-            description={description}
-            address={address}
-            number={number}
-            email={email}
-          />
+          {isPreview && (
+            <Preview
+              name={firstName}
+              title={title}
+              image={image}
+              description={description}
+              address={address}
+              number={number}
+              email={email}
+              eduData={eduData}
+              expData={expData}
+            />
+          )}
+        </div>
+        <div className="button px-3 md:max-w-2xl mx-auto -mt-4">
+          <button
+            className="block w-2/3 mx-auto text-center  rounded border-2 bg-gray-950 text-white hover:bg-gray-800 sm:w-full"
+            onClick={() => setIsPreview(!isPreview)}
+          >
+            {isPreview ? "Close Preview" : "View Preview"}
+          </button>
         </div>
       </main>
-      <footer className="text-center">Copyright &#169; 2023 Gideon</footer>
+      <footer className="text-center mt-16">
+        Copyright &#169; 2023 Gideon
+      </footer>
     </div>
   );
 }
