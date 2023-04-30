@@ -12,6 +12,8 @@ function App() {
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
+  const [eduData, setEduData] = useState([]);
 
   return (
     <div className="App">
@@ -21,25 +23,37 @@ function App() {
         </h1>
       </header>
       <main className="main">
-        <PersonalInfo
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          title={title}
-          setTitle={setTitle}
-          address={address}
-          setAddress={setAddress}
-          number={number}
-          email={email}
-          description={description}
-          setEmail={setEmail}
-          setNumber={setNumber}
-          setDescription={setDescription}
-        />
-        <Experience />
-        <Education />
-        <Preview name={firstName} title={title} />
+        <div className="mx-auto bg-slate-100 md:max-w-2xl">
+          <PersonalInfo
+            firstName={firstName}
+            setFirstName={setFirstName}
+            lastName={lastName}
+            setLastName={setLastName}
+            title={title}
+            setTitle={setTitle}
+            address={address}
+            setAddress={setAddress}
+            number={number}
+            email={email}
+            description={description}
+            setEmail={setEmail}
+            setNumber={setNumber}
+            setDescription={setDescription}
+            setImage={setImage}
+            image={image}
+          />
+          <Experience />
+          <Education data={eduData} setData={setEduData} />
+          <Preview
+            name={firstName}
+            title={title}
+            image={image}
+            description={description}
+            address={address}
+            number={number}
+            email={email}
+          />
+        </div>
       </main>
       <footer className="text-center">Copyright &#169; 2023 Gideon</footer>
     </div>

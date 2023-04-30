@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 
 const PersonalInfo = ({
@@ -16,15 +15,19 @@ const PersonalInfo = ({
   setEmail,
   description,
   setDescription,
+  image,
+  setImage,
 }) => {
   return (
-    <div className="personal-info text-left bg-slate-100 my-5">
+    <div className="personal-info text-left my-5">
       <h3 className="text-xl font-bold bg-amber-500 text-stone-100 p-2">
         Personal Information
       </h3>
       <form action="#" className="my-2 px-2 py-3" id="p-info">
         <div className="first-name">
-          <label htmlFor="firstName">First Name:</label>
+          <label className="text-lg" htmlFor="firstName">
+            First Name:
+          </label>
           <br />
           <input
             type="text"
@@ -38,7 +41,9 @@ const PersonalInfo = ({
           />
         </div>
         <div className="last-name">
-          <label htmlFor="lastName">Last Name:</label>
+          <label className="text-lg" htmlFor="lastName">
+            Last Name:
+          </label>
           <br />
           <input
             type="text"
@@ -52,7 +57,9 @@ const PersonalInfo = ({
           />
         </div>
         <div className="title">
-          <label htmlFor="title">Title:</label>
+          <label className="text-lg" htmlFor="title">
+            Title:
+          </label>
           <br />
           <input
             type="text"
@@ -65,12 +72,17 @@ const PersonalInfo = ({
             }}
           />
         </div>
+        {/* Image picker input */}
         <div className="cv-photo flex space-x-9 py-4">
           <label
             htmlFor="photo"
-            className="block w-1/3 rounded-sm bg-zinc-300 text-center py-1 cursor-pointer hover:bg-sky-500"
+            className={
+              !image
+                ? "bg-zinc-300 block w-full rounded-sm text-center py-1 cursor-pointer hover:bg-sky-500 sm:w-1/3"
+                : "bg-green-300 block w-full rounded-sm text-center py-1 cursor-pointer hover:bg-sky-500 sm:w-1/3"
+            }
           >
-            Choose Profile Photo
+            {!image ? "Choose Profile Photo" : "Change Photo"}
           </label>
           <input
             type="file"
@@ -78,10 +90,24 @@ const PersonalInfo = ({
             className="opacity-0"
             name="photo"
             accept="image/*"
+            onChange={(e) => {
+              const files = e.target.files;
+              for (const file of files) {
+                const img = URL.createObjectURL(file);
+                setImage(img);
+              }
+            }}
           />
         </div>
+        {!image && (
+          <div className="-mt-4 text-red-500 text-sm font-semibold">
+            *No image selected
+          </div>
+        )}
         <div className="address">
-          <label htmlFor="address">Address:</label>
+          <label htmlFor="address" className="text-lg">
+            Address:
+          </label>
           <br />
           <input
             type="text"
@@ -96,7 +122,9 @@ const PersonalInfo = ({
         </div>
         {/* Phone number input  */}
         <div className="phone-number">
-          <label htmlFor="phoneNumber">Phone number:</label>
+          <label htmlFor="phoneNumber" className="text-lg">
+            Phone number:
+          </label>
           <br />
           <input
             type="text"
@@ -110,7 +138,9 @@ const PersonalInfo = ({
           />
         </div>
         <div className="email">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className="text-lg">
+            Email:
+          </label>
           <br />
           <input
             type="email"
@@ -124,7 +154,9 @@ const PersonalInfo = ({
           />
         </div>
         <div className="description">
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description" className="text-lg">
+            Description:
+          </label>
           <br />
           <textarea
             name="description"

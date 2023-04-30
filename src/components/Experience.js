@@ -6,7 +6,9 @@ const Experience = () => {
       </h3>
       <form action="#" className="my-2 px-2 py-3">
         <div className="position">
-          <label htmlFor="position">Position:</label>
+          <label htmlFor="position" className="text-lg">
+            Position:
+          </label>
           <br />
           <input
             type="text"
@@ -16,7 +18,9 @@ const Experience = () => {
           />
         </div>
         <div className="company">
-          <label htmlFor="company">Company:</label>
+          <label htmlFor="company" className="text-lg">
+            Company:
+          </label>
           <br />
           <input
             type="text"
@@ -26,7 +30,9 @@ const Experience = () => {
           />
         </div>
         <div className="city">
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city" className="text-lg">
+            City:
+          </label>
           <br />
           <input
             type="text"
@@ -36,7 +42,9 @@ const Experience = () => {
           />
         </div>
         <div className="date-from">
-          <label htmlFor="dateFrom">From:</label>
+          <label htmlFor="dateFrom" className="text-lg">
+            From:
+          </label>
           <br />
           <input
             type="text"
@@ -46,7 +54,9 @@ const Experience = () => {
           />
         </div>
         <div className="date-to">
-          <label htmlFor="dateTo">To:</label>
+          <label htmlFor="dateTo" className="text-lg">
+            To:
+          </label>
           <br />
           <input
             type="text"

@@ -6,7 +6,9 @@ const Education = () => {
       </h3>
       <form action="#" className="my-2 px-2 py-3">
         <div className="university">
-          <label htmlFor="universityName">University Name:</label>
+          <label htmlFor="universityName" className="text-lg">
+            University Name:
+          </label>
           <br />
           <input
             type="text"
@@ -16,7 +18,9 @@ const Education = () => {
           />
         </div>
         <div className="city">
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city" className="text-lg">
+            City:
+          </label>
           <br />
           <input
             type="text"
@@ -26,7 +30,9 @@ const Education = () => {
           />
         </div>
         <div className="degree">
-          <label htmlFor="degreeAchieved">Degree:</label>
+          <label htmlFor="degreeAchieved" className="text-lg">
+            Degree:
+          </label>
           <br />
           <input
             type="text"
@@ -36,7 +42,9 @@ const Education = () => {
           />
         </div>
         <div className="subject">
-          <label htmlFor="subject">Subject:</label>
+          <label htmlFor="subject" className="text-lg">
+            Subject:
+          </label>
           <br />
           <input
             type="text"
@@ -46,7 +54,9 @@ const Education = () => {
           />
         </div>
         <div className="date-from">
-          <label htmlFor="dateFrom">From:</label>
+          <label htmlFor="dateFrom" className="text-lg">
+            From:
+          </label>
           <br />
           <input
             type="text"
@@ -56,7 +66,9 @@ const Education = () => {
           />
         </div>
         <div className="date-to">
-          <label htmlFor="dateTo">To:</label>
+          <label htmlFor="dateTo" className="text-lg">
+            To:
+          </label>
           <br />
           <input
             type="text"
