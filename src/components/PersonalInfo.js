@@ -87,7 +87,7 @@ const PersonalInfo = ({
           <input
             type="file"
             id="photo"
-            className="opacity-0"
+            className="opacity-0 w-8"
             name="photo"
             accept="image/*"
             onChange={(e) => {

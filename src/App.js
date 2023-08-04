@@ -62,7 +62,7 @@ function App() {
         </div>
         <div className="button px-3 md:max-w-2xl mx-auto -mt-4">
           <button
-            className="block w-2/3 mx-auto text-center  rounded border-2 bg-gray-950 text-white hover:bg-gray-800 sm:w-full"
+            className="block w-2/3 mx-auto mt-6 text-center  rounded border-2 bg-teal-600 text-white hover:bg-teal-400 sm:w-full"
             onClick={() => setIsPreview(!isPreview)}
           >
             {isPreview ? "Close Preview" : "View Preview"}
