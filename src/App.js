@@ -2,12 +2,12 @@ import Education from "./components/Education";
 import Experience from "./components/Experience";
 import PersonalInfo from "./components/PersonalInfo";
 import Preview from "./components/Preview";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import uniqid from "uniqid";
 
 function App() {
-  const [cvData, setCvData] = useState({
+  const initialData = {
     personalInfo: {
       firstName: "",
       lastName: "",
@@ -39,8 +39,19 @@ function App() {
         to: "",
       },
     ],
+  };
+  // useStates
+  const [cvData, setCvData] = useState(() => {
+    const savedData = localStorage.getItem("cvData");
+    return savedData ? JSON.parse(savedData) : initialData;
   });
   const [isPreview, setIsPreview] = useState(false);
+
+  // useEffects
+  // Save cvData to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cvData", JSON.stringify(cvData));
+  }, [cvData]);
 
   return (
     <div className="App">
