@@ -1,22 +1,14 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import emptyUser from "./empty_avatar.cedf234c.png";
 
-const Preview = ({
-  name,
-  title,
-  image,
-  description,
-  address,
-  number,
-  email,
-  eduData,
-  expData,
-}) => {
+const Preview = ({ data }) => {
   return (
     <main>
       <div className="bg-sky-500 pt-3 text-white pl-2">
-        <h1 className="text-4xl font-bold tracking-wider">{name}</h1>
-        <p className="text-xl tracking-wide">{title}</p>
+        <h1 className="text-4xl font-bold tracking-wider">
+          {data.personalInfo.firstName} {data.personalInfo.lastName}
+        </h1>
+        <p className="text-xl tracking-wide">{data.personalInfo.title}</p>
       </div>
       {/* Grid container */}
       <div className="sm:grid grid-cols-5 gap-0">
@@ -26,7 +18,9 @@ const Preview = ({
           <div className="py-6">
             <img
               className="block mx-auto w-40 h-48"
-              src={!image ? emptyUser : image}
+              src={
+                !data.personalInfo.image ? emptyUser : data.personalInfo.image
+              }
               alt="profile"
             />
           </div>
@@ -37,15 +31,15 @@ const Preview = ({
             </h2>
             <div className="mt-2">
               <h4 className="text-sm font-bold tracking-wide">Address</h4>
-              <p>{address}</p>
+              <p>{data.personalInfo.address}</p>
             </div>
             <div className="mt-2">
               <h4 className="text-sm font-bold tracking-wide">Phone Number</h4>
-              <p>{number}</p>
+              <p>{data.personalInfo.number}</p>
             </div>
             <div className="mt-2">
               <h4 className="text-sm font-bold tracking-wide">Email</h4>
-              <p className="break-all">{email}</p>
+              <p className="break-all">{data.personalInfo.email}</p>
             </div>
           </section>
         </div>
@@ -56,7 +50,7 @@ const Preview = ({
             <h3 className="text-lg font-bold text-blue-900 border-b border-zinc-400 tracking-wider">
               Description
             </h3>
-            <p className="">{description}</p>
+            <p className="">{data.personalInfo.description}</p>
           </section>
           {/* Experiences block */}
           <section className="pt-4">
@@ -64,7 +58,7 @@ const Preview = ({
               Experience
             </h3>
             <ul>
-              {expData.map((el) => (
+              {data.experience.map((el) => (
                 <li key={el.id}>
                   <div className="flex gap-4">
                     <div className="year font-bold">
@@ -85,7 +79,7 @@ const Preview = ({
               Education
             </h3>
             <ul>
-              {eduData.map((form) => (
+              {data.education.map((form) => (
                 <li key={form.id}>
                   <div className="flex gap-4">
                     <div className="year font-bold">
@@ -107,8 +101,8 @@ const Preview = ({
   );
 };
 
-Preview.propTypes = {
-  states: PropTypes.func,
-};
+// Preview.propTypes = {
+//   states: PropTypes.func,
+// };
 
 export default Preview;

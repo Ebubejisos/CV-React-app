@@ -1,23 +1,15 @@
 import PropTypes from "prop-types";
 
-const PersonalInfo = ({
-  firstName,
-  setFirstName,
-  lastName,
-  setLastName,
-  title,
-  setTitle,
-  address,
-  setAddress,
-  number,
-  setNumber,
-  email,
-  setEmail,
-  description,
-  setDescription,
-  image,
-  setImage,
-}) => {
+const PersonalInfo = ({ data, setData }) => {
+  function handleSetData(field, value) {
+    setData((prevData) => ({
+      ...prevData,
+      personalInfo: {
+        ...prevData.personalInfo,
+        [field]: value,
+      },
+    }));
+  }
   return (
     <div className="personal-info text-left my-5">
       <h3 className="text-xl font-bold bg-amber-500 text-stone-100 p-2">
@@ -34,9 +26,9 @@ const PersonalInfo = ({
             id="firstName"
             name="firstName"
             className="w-full rounded-sm"
-            value={firstName}
+            value={data.firstName}
             onChange={(e) => {
-              setFirstName(e.target.value);
+              handleSetData("firstName", e.target.value);
             }}
           />
         </div>
@@ -50,9 +42,9 @@ const PersonalInfo = ({
             id="lastName"
             name="lastName"
             className="w-full rounded-sm"
-            value={lastName}
+            value={data.lastName}
             onChange={(e) => {
-              setLastName(e.target.value);
+              handleSetData("lastName", e.target.value);
             }}
           />
         </div>
@@ -66,9 +58,9 @@ const PersonalInfo = ({
             id="title"
             name="title"
             className="w-full rounded-sm"
-            value={title}
+            value={data.title}
             onChange={(e) => {
-              setTitle(e.target.value);
+              handleSetData("title", e.target.value);
             }}
           />
         </div>
@@ -77,12 +69,12 @@ const PersonalInfo = ({
           <label
             htmlFor="photo"
             className={
-              !image
+              !data.image
                 ? "bg-zinc-300 block w-full rounded-sm text-center py-1 cursor-pointer hover:bg-sky-500 sm:w-1/3"
                 : "bg-green-300 block w-full rounded-sm text-center py-1 cursor-pointer hover:bg-sky-500 sm:w-1/3"
             }
           >
-            {!image ? "Choose Profile Photo" : "Change Photo"}
+            {!data.image ? "Choose Profile Photo" : "Change Photo"}
           </label>
           <input
             type="file"
@@ -94,12 +86,12 @@ const PersonalInfo = ({
               const files = e.target.files;
               for (const file of files) {
                 const img = URL.createObjectURL(file);
-                setImage(img);
+                handleSetData("image", img);
               }
             }}
           />
         </div>
-        {!image && (
+        {!data.image && (
           <div className="-mt-4 text-red-500 text-sm font-semibold">
             *No image selected
           </div>
@@ -114,9 +106,9 @@ const PersonalInfo = ({
             id="address"
             name="address"
             className="w-full rounded-sm"
-            value={address}
+            value={data.address}
             onChange={(e) => {
-              setAddress(e.target.value);
+              handleSetData("address", e.target.value);
             }}
           />
         </div>
@@ -131,9 +123,9 @@ const PersonalInfo = ({
             id="phoneNumber"
             name="phoneNumber"
             className="w-full rounded-sm"
-            value={number}
+            value={data.number}
             onChange={(e) => {
-              setNumber(e.target.value);
+              handleSetData("number", e.target.value);
             }}
           />
         </div>
@@ -147,9 +139,9 @@ const PersonalInfo = ({
             id="email"
             name="email"
             className="w-full rounded-sm n-outline"
-            value={email}
+            value={data.email}
             onChange={(e) => {
-              setEmail(e.target.value);
+              handleSetData("email", e.target.value);
             }}
           />
         </div>
@@ -163,9 +155,9 @@ const PersonalInfo = ({
             id="description"
             rows="2"
             className="w-full n-outline"
-            value={description}
+            value={data.description}
             onChange={(e) => {
-              setDescription(e.target.value);
+              handleSetData("description", e.target.value);
             }}
           ></textarea>
         </div>

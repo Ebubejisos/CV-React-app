@@ -1,42 +1,23 @@
-import { useState } from "react";
-import uniqid from "uniqid";
-
 const ExpForm = ({ data, setData }) => {
-  const [postn, setPostn] = useState("");
-  const [comp, setComp] = useState("");
-  const [city, setCity] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  // const reset = () => {
-  //   setPostn("");
-  //   setCity("");
-  //   setComp("");
-  //   setFrom("");
-  //   setTo("");
-  // };
-
-  const handleSubmit = (e) => {
+  const handleSetData = (field, value) => {
+    setData((prevData) => ({
+      ...prevData,
+      experience: prevData.experience.map((exp) =>
+        exp.id === data.id ? { ...exp, [field]: value } : exp
+      ),
+    }));
+  };
+  const handleDelete = (e) => {
     e.preventDefault();
-    if (postn === "") {
-      return;
-    }
-    setData([
-      ...data,
-      {
-        position: postn,
-        company: comp,
-        city: city,
-        from: from,
-        to: to,
-        id: uniqid(),
-      },
-    ]);
-    // reset();
+    setData((prevData) => ({
+      ...prevData,
+      experience: prevData.experience.filter((exp) => exp.id !== data.id),
+    }));
   };
 
   return (
     <div>
-      <form action="#" className="my-2 px-2 py-3" onSubmit={handleSubmit}>
+      <form action="#" className="my-2 px-2 py-3" onSubmit={handleDelete}>
         <div className="position">
           <label htmlFor="position" className="text-lg">
             Position:
@@ -47,8 +28,8 @@ const ExpForm = ({ data, setData }) => {
             className="w-full rounded-sm"
             name="position"
             id="position"
-            value={postn}
-            onChange={(e) => setPostn(e.target.value)}
+            value={data.position}
+            onChange={(e) => handleSetData("position", e.target.value)}
           />
         </div>
         <div className="company">
@@ -61,8 +42,8 @@ const ExpForm = ({ data, setData }) => {
             className="w-full rounded-sm"
             name="company"
             id="company"
-            value={comp}
-            onChange={(e) => setComp(e.target.value)}
+            value={data.company}
+            onChange={(e) => handleSetData("company", e.target.value)}
           />
         </div>
         <div className="city">
@@ -75,8 +56,8 @@ const ExpForm = ({ data, setData }) => {
             className="w-full rounded-sm"
             name="city"
             id="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={data.city}
+            onChange={(e) => handleSetData("city", e.target.value)}
           />
         </div>
         <div className="date-from">
@@ -89,8 +70,8 @@ const ExpForm = ({ data, setData }) => {
             className="w-full rounded-sm"
             name="dateFrom"
             id="dateFrom"
-            value={from}
-            onChange={(e) => setFrom(e.target.value)}
+            value={data.from}
+            onChange={(e) => handleSetData("from", e.target.value)}
           />
         </div>
         <div className="date-to">
@@ -103,12 +84,15 @@ const ExpForm = ({ data, setData }) => {
             className="w-full rounded-sm"
             name="dateTo"
             id="dateTo"
-            value={to}
-            onChange={(e) => setTo(e.target.value)}
+            value={data.to}
+            onChange={(e) => handleSetData("to", e.target.value)}
           />
         </div>
-        <button className="bg-green-400 mt-4 px-3 rounded hover:bg-green-300">
-          Save
+        <button
+          type="submit"
+          className="block w-2/3 mx-auto text-center  rounded border-2 bg-rose-500 text-white hover:bg-rose-400 sm:w-full transition-colors duration-300"
+        >
+          Delete
         </button>
       </form>
     </div>

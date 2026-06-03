@@ -1,11 +1,24 @@
-import { useState } from "react";
 import ExpForm from "./ExpForm";
+import uniqid from "uniqid";
 
 const Experience = ({ data, setData }) => {
-  const [addExperience, setAddExperience] = useState(false);
+  const addExperience = () => {
+    const experienceData = {
+      id: uniqid(),
+      position: "",
+      company: "",
+      city: "",
+      from: "",
+      to: "",
+    };
+    setData((prevData) => ({
+      ...prevData,
+      experience: [...prevData.experience, experienceData],
+    }));
+  };
 
   const handleClick = () => {
-    setAddExperience(true);
+    addExperience();
   };
 
   return (
@@ -15,8 +28,9 @@ const Experience = ({ data, setData }) => {
           Experience
         </h3>
       </div>
-      <ExpForm data={data} setData={setData} />
-      {addExperience && <ExpForm data={data} setData={setData} />}
+      {data.map((exp) => (
+        <ExpForm key={exp.id} data={exp} setData={setData} />
+      ))}
       <div>
         <button
           onClick={handleClick}

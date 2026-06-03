@@ -1,15 +1,21 @@
-import { useState } from "react";
 import EduForm from "./EduForm";
+import uniqid from "uniqid";
 
 const Education = ({ data, setData }) => {
-  const [eduForm, setEduForm] = useState(false);
-  const [id, setId] = useState(null);
-  function handleClick() {
-    setEduForm(true);
-  }
-  function handleDelete() {
-    setEduForm(false);
-    // setData([data.filter((el) => el.id != id)]);
+  function addEducation() {
+    const educationData = {
+      id: uniqid(),
+      university: "",
+      city: "",
+      degree: "",
+      subject: "",
+      from: "",
+      to: "",
+    };
+    setData((prevData) => ({
+      ...prevData,
+      education: [...prevData.education, educationData],
+    }));
   }
   return (
     <>
@@ -18,21 +24,12 @@ const Education = ({ data, setData }) => {
           Education
         </h3>
       </div>
-      <EduForm data={data} setData={setData} id={id} setId={setId} />
-      {eduForm && (
-        <EduForm data={data} setData={setData} id={id} setId={setId} />
-      )}
-      {eduForm && (
-        <button
-          onClick={handleDelete}
-          className="block w-2/3 mx-auto text-center  rounded border-2 bg-rose-500 text-white hover:bg-rose-400 sm:w-full"
-        >
-          Delete
-        </button>
-      )}
+      {data.map((edu) => (
+        <EduForm key={edu.id} data={edu} setData={setData} />
+      ))}
       <div className="pb-3">
         <button
-          onClick={handleClick}
+          onClick={addEducation}
           className="block w-2/3 mx-auto text-center  rounded border-2 bg-gray-950 text-white hover:bg-gray-800 sm:w-full"
         >
           Add Education

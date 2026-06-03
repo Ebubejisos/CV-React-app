@@ -1,48 +1,26 @@
-import { useState } from "react";
-import uniqid from "uniqid";
-
-const EduForm = ({ data, setData, setId }) => {
-  const [uniName, setUniName] = useState("");
-  const [city, setCity] = useState("");
-  const [deg, setDeg] = useState("");
-  const [subject, setSubject] = useState("");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  const reset = () => {
-    setUniName("");
-    setCity("");
-    setDeg("");
-    setSubject("");
-    setFrom("");
-    setTo("");
+const EduForm = ({ data, setData }) => {
+  const handleSetData = (field, value) => {
+    setData((prevData) => ({
+      ...prevData,
+      education: prevData.education.map((edu) =>
+        edu.id === data.id ? { ...edu, [field]: value } : edu
+      ),
+    }));
   };
-  function handleSubmit(e) {
+
+  function handleDelete(e) {
     e.preventDefault();
-    if (deg === "") {
-      return;
-    }
-    const id = uniqid();
-    setId(id);
-    setData([
-      ...data,
-      {
-        university: uniName,
-        city: city,
-        degree: deg,
-        subject: subject,
-        from: from,
-        to: to,
-        id: id,
-      },
-    ]);
-    reset();
+    setData((prevData) => ({
+      ...prevData,
+      education: prevData.education.filter((edu) => edu.id !== data.id),
+    }));
   }
 
   return (
     <form
       action="#"
       className="my-2 px-2 py-3"
-      onSubmit={handleSubmit}
+      onSubmit={handleDelete}
       id="form"
     >
       <div className="university">
@@ -55,8 +33,8 @@ const EduForm = ({ data, setData, setId }) => {
           className="w-full rounded-sm"
           name="universityName"
           id="universityName"
-          value={uniName}
-          onChange={(e) => setUniName(e.target.value)}
+          value={data.university}
+          onChange={(e) => handleSetData("university", e.target.value)}
         />
       </div>
       <div className="city">
@@ -69,8 +47,8 @@ const EduForm = ({ data, setData, setId }) => {
           className="w-full rounded-sm"
           name="city"
           id="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
+          value={data.city}
+          onChange={(e) => handleSetData("city", e.target.value)}
         />
       </div>
       <div className="degree">
@@ -83,8 +61,8 @@ const EduForm = ({ data, setData, setId }) => {
           className="w-full rounded-sm"
           name="degreeAchieved"
           id="degreeAchieved"
-          value={deg}
-          onChange={(e) => setDeg(e.target.value)}
+          value={data.degree}
+          onChange={(e) => handleSetData("degree", e.target.value)}
         />
       </div>
       <div className="subject">
@@ -97,8 +75,8 @@ const EduForm = ({ data, setData, setId }) => {
           className="w-full rounded-sm"
           name="subject"
           id="subject"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
+          value={data.subject}
+          onChange={(e) => handleSetData("subject", e.target.value)}
         />
       </div>
       <div className="date-from">
@@ -111,8 +89,8 @@ const EduForm = ({ data, setData, setId }) => {
           className="w-full rounded-sm"
           name="dateFrom"
           id="dateFrom"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
+          value={data.from}
+          onChange={(e) => handleSetData("from", e.target.value)}
         />
       </div>
       <div className="date-to">
@@ -125,13 +103,16 @@ const EduForm = ({ data, setData, setId }) => {
           className="w-full rounded-sm"
           name="dateTo"
           id="dateTo"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
+          value={data.to}
+          onChange={(e) => handleSetData("to", e.target.value)}
         />
       </div>
-      <button className="bg-green-400 mt-4 px-3 rounded hover:bg-green-300">
-        Save
-      </button>
+      <button
+        type="submit"
+        className="block w-2/3 mx-auto text-center  rounded border-2 bg-rose-500 text-white hover:bg-rose-400 sm:w-full transition-colors duration-300"
+      >
+        Delete
+      </button>{" "}
     </form>
   );
 };

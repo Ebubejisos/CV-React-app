@@ -4,17 +4,42 @@ import PersonalInfo from "./components/PersonalInfo";
 import Preview from "./components/Preview";
 import { useState } from "react";
 
+import uniqid from "uniqid";
+
 function App() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [title, setTitle] = useState("");
-  const [address, setAddress] = useState("");
-  const [number, setNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
-  const [eduData, setEduData] = useState([]);
-  const [expData, setExpData] = useState([]);
+  const [cvData, setCvData] = useState({
+    personalInfo: {
+      firstName: "",
+      lastName: "",
+      title: "",
+      address: "",
+      number: "",
+      email: "",
+      description: "",
+      image: null,
+    },
+    education: [
+      {
+        id: uniqid(),
+        university: "",
+        city: "",
+        degree: "",
+        subject: "",
+        from: "",
+        to: "",
+      },
+    ],
+    experience: [
+      {
+        id: uniqid(),
+        position: "",
+        company: "",
+        city: "",
+        from: "",
+        to: "",
+      },
+    ],
+  });
   const [isPreview, setIsPreview] = useState(false);
 
   return (
@@ -25,40 +50,11 @@ function App() {
         </h1>
       </header>
       <main className="main">
-        <div className="mx-auto bg-slate-100 md:max-w-2xl">
-          <PersonalInfo
-            firstName={firstName}
-            setFirstName={setFirstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            title={title}
-            setTitle={setTitle}
-            address={address}
-            setAddress={setAddress}
-            number={number}
-            email={email}
-            description={description}
-            setEmail={setEmail}
-            setNumber={setNumber}
-            setDescription={setDescription}
-            setImage={setImage}
-            image={image}
-          />
-          <Experience data={expData} setData={setExpData} />
-          <Education data={eduData} setData={setEduData} />
-          {isPreview && (
-            <Preview
-              name={firstName}
-              title={title}
-              image={image}
-              description={description}
-              address={address}
-              number={number}
-              email={email}
-              eduData={eduData}
-              expData={expData}
-            />
-          )}
+        <div className="mx-auto bg-slate-100 md:max-w-5xl">
+          <PersonalInfo data={cvData.personalInfo} setData={setCvData} />
+          <Experience data={cvData.experience} setData={setCvData} />
+          <Education data={cvData.education} setData={setCvData} />
+          {isPreview && <Preview data={cvData} />}
         </div>
         <div className="button px-3 md:max-w-2xl mx-auto -mt-4">
           <button
