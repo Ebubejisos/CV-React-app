@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react";
+
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import PersonalInfo from "./components/PersonalInfo";
 import Preview from "./components/Preview";
-import { useState, useEffect } from "react";
+import PdfRenderer from "./components/PdfRenderer";
+import emptyUser from "./components/empty_avatar.cedf234c.png";
 
 import uniqid from "uniqid";
 
@@ -16,7 +19,7 @@ function App() {
       number: "",
       email: "",
       description: "",
-      image: null,
+      image: emptyUser,
     },
     education: [
       {
@@ -65,7 +68,12 @@ function App() {
           <PersonalInfo data={cvData.personalInfo} setData={setCvData} />
           <Experience data={cvData.experience} setData={setCvData} />
           <Education data={cvData.education} setData={setCvData} />
-          {isPreview && <Preview data={cvData} />}
+          {isPreview && (
+            <div className="preview">
+              <Preview cvData={cvData} />
+              <PdfRenderer cvData={cvData} emptyUser={emptyUser} />
+            </div>
+          )}
         </div>
         <div className="button px-3 md:max-w-2xl mx-auto -mt-4">
           <button

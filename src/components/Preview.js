@@ -1,14 +1,14 @@
 // import PropTypes from "prop-types";
 import emptyUser from "./empty_avatar.cedf234c.png";
 
-const Preview = ({ data }) => {
+const Preview = ({ cvData }) => {
   return (
     <main>
       <div className="bg-sky-500 pt-3 text-white pl-2">
         <h1 className="text-4xl font-bold tracking-wider">
-          {data.personalInfo.firstName} {data.personalInfo.lastName}
+          {cvData.personalInfo.firstName} {cvData.personalInfo.lastName}
         </h1>
-        <p className="text-xl tracking-wide">{data.personalInfo.title}</p>
+        <p className="text-xl tracking-wide">{cvData.personalInfo.title}</p>
       </div>
       {/* Grid container */}
       <div className="sm:grid grid-cols-5 gap-0">
@@ -19,9 +19,11 @@ const Preview = ({ data }) => {
             <img
               className="block mx-auto w-40 h-48"
               src={
-                !data.personalInfo.image ? emptyUser : data.personalInfo.image
+                !cvData.personalInfo.image
+                  ? emptyUser
+                  : cvData.personalInfo.image
               }
-              alt="profile"
+              alt="profile image"
             />
           </div>
           {/* Personal Details */}
@@ -31,15 +33,15 @@ const Preview = ({ data }) => {
             </h2>
             <div className="mt-2">
               <h4 className="text-sm font-bold tracking-wide">Address</h4>
-              <p>{data.personalInfo.address}</p>
+              <p>{cvData.personalInfo.address}</p>
             </div>
             <div className="mt-2">
               <h4 className="text-sm font-bold tracking-wide">Phone Number</h4>
-              <p>{data.personalInfo.number}</p>
+              <p>{cvData.personalInfo.number}</p>
             </div>
             <div className="mt-2">
               <h4 className="text-sm font-bold tracking-wide">Email</h4>
-              <p className="break-all">{data.personalInfo.email}</p>
+              <p className="break-all">{cvData.personalInfo.email}</p>
             </div>
           </section>
         </div>
@@ -50,7 +52,7 @@ const Preview = ({ data }) => {
             <h3 className="text-lg font-bold text-blue-900 border-b border-zinc-400 tracking-wider">
               Description
             </h3>
-            <p className="">{data.personalInfo.description}</p>
+            <p className="">{cvData.personalInfo.description}</p>
           </section>
           {/* Experiences block */}
           <section className="pt-4">
@@ -58,7 +60,7 @@ const Preview = ({ data }) => {
               Experience
             </h3>
             <ul>
-              {data.experience.map((el) => (
+              {cvData.experience.map((el) => (
                 <li key={el.id}>
                   <div className="flex gap-4">
                     <div className="year font-bold">
@@ -79,7 +81,7 @@ const Preview = ({ data }) => {
               Education
             </h3>
             <ul>
-              {data.education.map((form) => (
+              {cvData.education.map((form) => (
                 <li key={form.id}>
                   <div className="flex gap-4">
                     <div className="year font-bold">
